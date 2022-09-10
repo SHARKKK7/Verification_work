@@ -2,8 +2,60 @@
 {
     private static void Main(string[] args)
     {
-        string[] inputArrayString = {"hello", "day", "Tuersday",
-         "dah", "Til", "Frih", "Sday", "xih"};
+        // string[] inputArrayString = {"hello", "day", "Tuersday",
+        //  "dah", "Til", "Frih", "Sday", "xih"};
+
+        // Метод заполняет массив строк, через терминал пользователем
+        string[] FillStringArray()
+        {
+            //============ Блок объявления переменных
+            string[] AS;
+            int count;
+            string s;
+            string[] AS2;
+            //=============
+
+            Console.WriteLine("===========================================================");
+            Console.WriteLine("Заполните массив различными наборами символов через Enter, \nдалее нажмите Enter для подтвеждения: ");
+            Console.WriteLine("===========================================================");
+
+            // Обнулить количество строк
+            count = 0;
+            // Выделить память для 0 строк
+            AS = new string[count];
+
+            do
+            {
+                Console.WriteLine();
+
+                // Ввести строку
+                s = Console.ReadLine() ?? "";
+
+                // Проверка, пустая ли строка
+                if (s != "")
+                {
+                    // если строка не пустая, то добавить строку в массив
+                    count++;
+
+                    // предварительно выделить память для нового массива
+                    // в котором на 1 элемент больше
+                    AS2 = new string[count];
+
+                    // скопировать старый массив в новый
+                    for (int i = 0; i < AS2.Length - 1; i++)
+                        AS2[i] = AS[i];
+
+                    // добавить последнюю введенную строку в массив AS2
+                    AS2[count - 1] = s;
+
+                    // перенаправить ссылку AS на AS2
+                    AS = AS2;
+                }
+                // Пока не будет введена пустая строка, программа продолжит работу
+            } while (s != "");
+
+            return AS;
+        }
 
         // Метод подсчета длины элементов <=3 в массиве 
         string[] UpdateStringArray(string[] inputStringArray)
@@ -50,11 +102,12 @@
         }
 
         Console.Clear();
-        //----------------------------------------------------
-        string[] resultStringArray = UpdateStringArray(inputArrayString);
-        
+        //-----------------------------------------------------------
+        string[] newUserArray = FillStringArray();
+        string[] resultStringArray = UpdateStringArray(newUserArray);
+        //------------------------------------------------------------
         Console.WriteLine();
         printStringArray(resultStringArray);
-        //----------------------------------------------------
+        //-----------------------------------------------------------
     }
 }
