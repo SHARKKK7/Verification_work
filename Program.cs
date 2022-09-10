@@ -2,7 +2,7 @@
 {
     private static void Main(string[] args)
     {
-        string[] inputArrayString = {"iok", "day", "Tuersday",
+        string[] inputArrayString = {"hello", "day", "Tuersday",
          "dah", "Til", "Frih", "Sday", "xih"};
 
         // Метод подсчета длины элементов <=3 в массиве 
@@ -36,9 +36,25 @@
             return newStringArray;
         }
 
+        // Метод выводит массив строк длина которых меньше, либо равна 3 символам
+        void printStringArray(string[] inputArray)
+        {
+            int i = 0;
+            Console.Write("[");
+            while (i < inputArray.Length - 1)
+            {
+                Console.Write(inputArray[i] + ", ");
+                i++;
+            }
+            Console.Write(inputArray[i] + "]");
+        }
+
         Console.Clear();
         //----------------------------------------------------
         string[] resultStringArray = UpdateStringArray(inputArrayString);
+        
+        Console.WriteLine();
+        printStringArray(resultStringArray);
         //----------------------------------------------------
     }
 }
